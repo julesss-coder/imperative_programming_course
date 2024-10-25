@@ -31,38 +31,37 @@ import (
 )
 
 func calculate_cuboid(a float64, b float64, c float64) {
-	var volume float64 = a * b * c
-	var sum_of_sides float64 = 4*a + 4*b + 4*c
-	var surface float64 = 2*a*c + 2*b*c + 2*a*b
-	var circumradius float64 = float64(1 / (2 * math.Sqrt(math.Pow(a, 2)+math.Pow(b, 2)+math.Pow(c, 2))))
-	var space_diagonal float64 = float64(math.Sqrt(math.Pow(a, 2) + math.Pow(b, 2) + math.Pow(c, 2)))
+	volume := a * b * c
+	sum_of_sides := 4 * (a + b + c)
+	surface := 2*a*c + 2*b*c + 2*a*b
+	circumradius := (math.Sqrt(math.Pow(a, 2) + math.Pow(b, 2) + math.Pow(c, 2))) / 2
+	space_diagonal := math.Sqrt(math.Pow(a, 2) + math.Pow(b, 2) + math.Pow(c, 2))
 
 	fmt.Printf(`For a cuboid with sidelengths a = %.2f, b = %.2f, and c = %.2f, the volume is %.2f m^3, the sum of its sides is %.2f m, its surface area is %.2f m^2, its circumradius is %.2f and its space diagonale is %.2f.`, a, b, c, volume, sum_of_sides, surface, circumradius, space_diagonal)
 }
 
 func main() {
-	var side_a float64
-	var side_b float64
-	var side_c float64
-	var error error
+	var side_a, side_b, side_c float64
 
 	fmt.Println("Enter a side length:")
-	_, error = fmt.Scan(&side_a)
-	if error != nil {
+	fmt.Print("Side a: ")
+	if _, error := fmt.Scan(&side_a); error != nil {
 		fmt.Println("Error reading input.")
+		return
 	}
-	fmt.Println("Enter a side length:")
-	_, error = fmt.Scan(&side_b)
-	if error != nil {
+
+	fmt.Println("Side b: ")
+	if _, error := fmt.Scan(&side_b); error != nil {
 		fmt.Println("Error reading input.")
+		return
 	}
-	fmt.Println("Enter a side length:")
-	_, error = fmt.Scan(&side_c)
-	if error != nil {
+
+	fmt.Println("Side c: ")
+	if _, error := fmt.Scan(&side_c); error != nil {
 		fmt.Println("Error reading input.")
+		return
 	}
 
 	fmt.Printf("a, b, c: %.2f, %.2f, %.2f\n", side_a, side_b, side_c)
 	calculate_cuboid(side_a, side_b, side_c)
-
 }
