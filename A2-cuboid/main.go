@@ -34,23 +34,35 @@ func calculate_cuboid(a float64, b float64, c float64) {
 	var volume float64 = a * b * c
 	var sum_of_sides float64 = 4*a + 4*b + 4*c
 	var surface float64 = 2*a*c + 2*b*c + 2*a*b
-	var circumradius float64 = 1 / 2 * math.Sqrt2(math.Pow(a, 2)+math.Pow(b, 2)+math.Pow(c, 2))
-	var space_diagonal float64 = math.Sqrt2(math.Pow(a, 2) + math.Pow(b, 2) + math.Pow(c, 2))
-	fmt.Printf(`For a cuboid with sidelengths a = %.2f, b = %.2f, and c = %.2f,\n the volume is %.2f m^3\n the sum of its sides is %.2f m,\n its surface area is %.2f m^2,\n its circumradius is %.2f and\n its space diagonale is %.2f.`, a, b, c, volume, sum_of_sides, surface, circumradius, space_diagonal)
+	var circumradius float64 = float64(1 / (2 * math.Sqrt(math.Pow(a, 2)+math.Pow(b, 2)+math.Pow(c, 2))))
+	var space_diagonal float64 = float64(math.Sqrt(math.Pow(a, 2) + math.Pow(b, 2) + math.Pow(c, 2)))
+
+	fmt.Printf(`For a cuboid with sidelengths a = %.2f, b = %.2f, and c = %.2f, the volume is %.2f m^3, the sum of its sides is %.2f m, its surface area is %.2f m^2, its circumradius is %.2f and its space diagonale is %.2f.`, a, b, c, volume, sum_of_sides, surface, circumradius, space_diagonal)
 }
 
 func main() {
-	var side_lengths = make([]float64, 0, 3)
-	var side_length float64
+	var side_a float64
+	var side_b float64
+	var side_c float64
 	var error error
 
-	for i := 0; i < 3; i++ {
-		fmt.Println("Enter a sidelength:")
-		_, error = fmt.Scan(&side_length)
-		if error != nil {
-			fmt.Println("Error reading user input: ", error)
-		} else {
-			side_lengths = append(side_lengths, side_length)
-		}
+	fmt.Println("Enter a side length:")
+	_, error = fmt.Scan(&side_a)
+	if error != nil {
+		fmt.Println("Error reading input.")
 	}
+	fmt.Println("Enter a side length:")
+	_, error = fmt.Scan(&side_b)
+	if error != nil {
+		fmt.Println("Error reading input.")
+	}
+	fmt.Println("Enter a side length:")
+	_, error = fmt.Scan(&side_c)
+	if error != nil {
+		fmt.Println("Error reading input.")
+	}
+
+	fmt.Printf("a, b, c: %.2f, %.2f, %.2f\n", side_a, side_b, side_c)
+	calculate_cuboid(side_a, side_b, side_c)
+
 }

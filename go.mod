@@ -1,3 +1,3 @@
-module imperative-programming-exercises-A
+module imperative-programming-exercises
 
 go 1.23.1
